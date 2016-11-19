@@ -2,10 +2,12 @@
 
 namespace Hydrogen\View;
 
+use Exception;
+
 class HtmlView extends AbstractView
 {
     protected $templatePath  = 'templates/';
-    protected $template;
+    protected $template = 'default';
     
     public function setTemplatePath($templatePath)
     {
@@ -21,6 +23,7 @@ class HtmlView extends AbstractView
     public function setTemplate($template)
     {
         $this->template = $template;
+        return $this;
     }
     
     public function getTemplate()
