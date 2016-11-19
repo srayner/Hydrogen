@@ -5,6 +5,7 @@ namespace Hydrogen\View;
 class HtmlView extends AbstractView
 {
     protected $templatePath  = 'templates/';
+    protected $template;
     
     public function setTemplatePath($templatePath)
     {
@@ -17,12 +18,22 @@ class HtmlView extends AbstractView
         return $this->templatePath;
     }
     
-    public function render($template)
+    public function setTemplate($template)
     {
-        if (file_exists($this->templatePath.$template)) {
-            include $this->templatePath.$template;
+        $this->template = $template;
+    }
+    
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+    
+    public function render()
+    {
+        if (file_exists($this->templatePath.$this->template)) {
+            include $this->templatePath.$this->template;
         } else {
-            throw new Exception('no template named ' . $template . ' present in directory ' . $this->templatePath);
+            throw new Exception('no template named ' . $this->template . ' present in directory ' . $this->templatePath);
         }
     }  
 }
