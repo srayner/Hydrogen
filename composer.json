@@ -1,0 +1,22 @@
+{
+    "name": "srayner/hydrogen",
+    "description": "A lightweight PHP framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Rayner",
+            "email": "srayner02@gmail.com"
+        }
+    ],
+    "keywords": [
+        "php",
+        "framework"
+    ],
+    "homepage": "http://github.com/srayner/hydrogen",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.6"
+    }
+}
