@@ -13,6 +13,11 @@
         "php",
         "framework"
     ],
+    "autoload": {
+        "psr4": [
+            "src/"
+        ]
+    },
     "homepage": "http://github.com/srayner/hydrogen",
     "minimum-stability": "dev",
     "prefer-stable": true,
