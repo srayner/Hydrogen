@@ -14,9 +14,9 @@
         "framework"
     ],
     "autoload": {
-        "psr-4": [
-            "src/"
-        ]
+        "psr-4": {
+            "Hydrogen" : "src/"
+        }
     },
     "homepage": "http://github.com/srayner/hydrogen",
     "minimum-stability": "dev",
