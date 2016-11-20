@@ -14,6 +14,8 @@ class Response
         404 => 'Not found',
         500 => 'Internal Server Error'
     );
+    protected $contentType = 'text/html';
+    protected $content;
 
     public function __construct($code = null)
     {
@@ -35,6 +37,24 @@ class Response
     public function getMessage()
     {
         return $this->message[$this->code];
+    }
+    
+    public function setContent($content)
+    {
+        $this->content = $content;
+        return $this;
+    }
+    
+    public function getContent()
+    {
+        return $this->content;
+    }
+    
+    public function render()
+    {
+        header('Content-Type: ' . $this->contentType);
+        http_response_code($this->code);
+        echo $this->content;
     }
 }
 

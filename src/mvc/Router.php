@@ -3,7 +3,7 @@
 namespace Hydrogen\Mvc;
 
 use Hydrogen\Http\Request;
-use Exception;
+use Hydrogen\Http\Response;
 
 class Router
 {
@@ -17,6 +17,12 @@ class Router
     }
     
     public function route()
+    {
+        $response = $this->doRouting();
+        $response->render();
+    }
+    
+    protected function doRouting()
     {
         $urlParts = explode('/', rtrim($this->request->uri(), "/"));
         
@@ -33,14 +39,26 @@ class Router
         $controllerAction = $action . 'Action';
         
         if (!class_exists($controllerClass)) {
-            throw new Exception('Cannot route request - Controller not found.');
+            return $this->response(404, 'Controller not found.');
         }
         
         if (!method_exists($controllerClass, $controllerAction)) {
-            throw new Exception('Cannot route request - Action not found.');
+            return $this->response(404, 'Action not found.');
         }
         
+        // Retrun a response object containing the output buffer as the body.
+        $response = New Response(200);
+        ob_start();
         $c = new $controllerClass($this->request);
         $c->{$controllerAction}();
+        $response->setContent(ob_get_clean());
+        return $response;
+    }
+    
+    protected function response($code, $message)
+    {
+        $response = new Response($code);
+        $response->setContent($message);
+        return $response;
     }
 }
