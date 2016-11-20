@@ -2,7 +2,7 @@
 
 namespace Hydrogen\View;
 
-class JsonView extends Hydrogen\View\AbstractView
+class JsonView extends AbstractView
 {
     public function render()
     {
